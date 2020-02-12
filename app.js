@@ -4,8 +4,6 @@ var app = express();
 var bodyParser = require("body-parser");
 const fs=require('fs');
 const fileUpload = require('express-fileupload');
-//const { exec } = require('child_process');
-//const { spawn }= require('child_process');
 const exec= require('child_process').exec;
 const spawn= require('child_process').spawn;
 
@@ -15,7 +13,7 @@ var sourceflag=1;
 app.use(fileUpload());
 app.use(bodyParser.urlencoded({extended: true}));
 //app.set("view engine", "ejs");
-app.use(express.static(__dirname+"/imp_public"));
+app.use(express.static('imp_public'));
 
 
 //var datadir="somefolder/result_test50.json"
@@ -24,8 +22,6 @@ var datadir="";
 
 
 app.get("/impres/index", function(req, res){
-   
-   
       if(sourceflag===1)
     {
         res.render("homepage.ejs");
@@ -335,9 +331,9 @@ app.post("/impres/running", function(req, res){
 });
 
 
-var server=app.listen(8080, process.env.IP, function(){
-   console.log("The IMPRes Server Has Started!");
-   console.log(__dirname);
-
+var server=app.listen(3000, process.env.IP, function(){
+   console.log("The IMPRes Server Has Started On:");
+   console.log("http://localhost:3000/impres/index");
+//    console.log(__dirname);
 });
 
