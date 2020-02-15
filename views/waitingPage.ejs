@@ -2,47 +2,140 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMPRes</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>IMPRes</title>
 
-    <!-- Bootstrap core CSS -->
-    <!--<link href="../../../../dist/css/bootstrap.min.css" rel="stylesheet">-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
-        integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-    <!-- Custom styles for this template -->
-    <link href="/imp_css/jumbotron.css" rel="stylesheet">
-    <!--<link href="mycss.css" rel="stylesheet">-->
+	<!-- Bootstrap core CSS -->
+	<!--<link href="../../../../dist/css/bootstrap.min.css" rel="stylesheet">-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+	<!-- Custom styles for this template -->
+	<link href="/imp_css/jumbotron.css" rel="stylesheet">
+	<!--<link href="mycss.css" rel="stylesheet">-->
 </head>
 
+<style stype="text/css">
+	html,
+	body {
+		background: #e9ecef;
+		width: 100%;
+		overflow-x: hidden;
+		overflow-y: hidden;
+	}
+</style>
+
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 
-        <a class="navbar-brand" href="/impres">HOME</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+		<a class="navbar-brand" href="/impres">HOME</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 
-        <div class="collapse navbar-collapse flex-row-reverse" id="navbarsExampleDefault">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/impres/info">Info</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/impres/job">New Job</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/impres/tutorial">Tutorial</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/impres/tool">Tools</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+		<div class="collapse navbar-collapse flex-row-reverse" id="navbarsExampleDefault">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="/impres/info">Info</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/impres/job">New Job</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/impres/tutorial">Tutorial</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/impres/tool">Tools</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
 
-    
+	<div class="row mt-5 d-flex justify-content-center">
+		<div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+			<span class="sr-only">Loading...</span>
+		</div>
+	</div>
+
+	<div class="row mt-3 h1 d-flex justify-content-center">
+		Processing...
+	</div>
+
+	<div class="row mt-3 d-flex justify-content-center">
+		<div class="card text-center border-dark" style="width: 25rem; margin: auto;">
+			<div class="card-header">
+				<b>Task Infoamtion</b>
+			</div>
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">
+					<b>Organism:</b>
+					<%= info.organism %>
+				</li>
+				<li class="list-group-item">
+					<b>Algorithm:</b>
+					<% if (info.radioalgo === 'option1'){ %>
+						IMPRes 1.0
+						<% } else { %>
+							IMPRes-Pro
+							<% } %>
+				</li>
+				<li class="list-group-item">
+					<b>Target genes:</b>
+					<% if (info.radiotarget === 'option1'){ %>
+						Uploaded target
+						<% } else{ %>
+							Derive target genes automatically
+							<% } %>
+
+				</li>
+				<% if (info.radiotarget === 'option2'){ %>
+					<li class="list-group-item">
+						<b>Targetnum:</b>
+						<%= info.targetnum %>
+					</li>
+					<% } %>
+						<li class="list-group-item">
+							<b>Expression data file:</b>
+							<%= info.dataradio %>
+						</li>
+						<% if (info.timepoint != undefined){ %>
+							<li class="list-group-item">
+								<b>Timepoint:</b>
+								<%= info.timepoint %>
+							</li>
+							<li class="list-group-item">
+								<b>Replicate:</b>
+								<%= info.replicate %>
+							</li>
+							<% } else{ %>
+								<li class="list-group-item">
+									<b>Controlsam:</b>
+									<%= info.controlsam %>
+								</li>
+								<li class="list-group-item">
+									<b>Casesam:</b>
+									<%= info.casesam %>
+								</li>
+								<% } %>
+			</ul>
+		</div>
+	</div>
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	<script>
+		var Url = '/impres/exec/';
+		var data = {
+			para: "<%= para%>",
+			datadir: "<%= datadir%>"
+		};
+		$.post(Url, data, function(data, status){			
+		});
+	</script>
 </body>
 
 </html>

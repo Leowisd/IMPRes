@@ -174,8 +174,6 @@ app.post("/impres/running", function (req, res) {
     var time = date.getTime();
     var folder = "./imp_public/imp_result/" + organism + "/" + time;
     
-    res.render('waitingPage.ejs');
-
     exec('mkdir ' + folder, (err, stdout, stderr) => {
         if (err) {
             return;
@@ -272,30 +270,12 @@ app.post("/impres/running", function (req, res) {
         var para = comfolder + " " + datatype + " " + num1 + " " + num2 + " " + backnet + " " + ifcon + " " + seedfilename + " " + expfilename + " " + outfilename + " " + topnum + " " + ifend + " " + ifppi + " " + profilename;
 
         datadir = "/imp_result/" + organism + "/" + temfolder;
+	
+		res.render('waitingPage.ejs', {info: req.body, para: para, datadir: datadir});
 
-        exec('Rscript ./rserve.R', (err, stdout, stderr) => {
-            if (err) {
-                console.log(err.message.toString());
-                res.send("error");
-                return;
-            }
+		
 
-            exec('java -jar ./version_11_7_2019.jar ' + para, (err, stdout, stderr) => {
-                if (err) {
-                    console.log(err.message.toString());
-                    res.send("error");
-                    return;
-                }
-                console.log(stdout);
-                sourceflag = 2;
-                //       res.redirect("/impres/index");
-            });
-
-        });
-
-        return res.redirect('http://digbio.missouri.edu/impres' + datadir);
-
-
+	
         // res.send("running, wait to redirect!");
 
         // get data from form and add to campgrounds array
@@ -308,10 +288,35 @@ app.post("/impres/running", function (req, res) {
 
 });
 
+app.post("/impres/exec/", function(req, res){
+	// console.log(req.body);
+	var para = req.body.para;
+	var datadir = req.body.datadir;
+	exec('Rscript ./rserve.R', (err, stdout, stderr) => {
+        if (err) {
+            console.log(err.message.toString());
+            // res.send("error");
+            return;
+        }
+
+        exec('java -jar ./version_11_7_2019.jar ' + para, (err, stdout, stderr) => {
+            if (err) {
+                console.log(err.message.toString());
+                // res.send("error");
+                return;
+            }
+            console.log(stdout);
+            sourceflag = 2;
+        });
+    });
+    return res.redirect('/impres/' + datadir);
+});
+
 
 var server = app.listen(3000, process.env.IP, function () {
     console.log("The IMPRes Server Has Started On:");
-    console.log("http://localhost:3000/impres/index");
+    // console.log("http://localhost:3000/impres/index");
+	console.log("https://workplace-jtuvq.run-us-west2.goorm.io/impres/index");
     //    console.log(__dirname);
 });
 
