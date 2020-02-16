@@ -23,6 +23,40 @@
 		overflow-x: hidden;
 		overflow-y: hidden;
 	}
+
+	.slideShine {
+		background: #000 -webkit-linear-gradient(left, #000, #fff 50%, #fff 90%, #000) no-repeat 0 0;
+		background-size: 20% 100%;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		/* font-size: 36px;
+     text-align: center;
+     font-weight: bold; */
+		text-decoration: underline;
+	}
+
+	.slideShine {
+		-webkit-animation: slideShine 4s linear infinite;
+		animation: slideShine 4s linear infinite;
+	}
+
+	@-webkit-keyframes slideShine {
+		0% {
+			background-position: 0 0;
+		}
+		100% {
+			background-position: 100% 100%;
+		}
+	}
+
+	@keyframes slideShine {
+		0% {
+			background-position: 0 0;
+		}
+		100% {
+			background-position: 100% 100%;
+		}
+	}
 </style>
 
 <body>
@@ -51,76 +85,80 @@
 		</div>
 	</nav>
 
-	<div class="row mt-5 d-flex justify-content-center">
-		<div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
-			<span class="sr-only">Loading...</span>
-		</div>
-	</div>
-
-	<div class="row mt-3 h1 d-flex justify-content-center">
-		Processing...
-	</div>
-
-	<div class="row mt-3 d-flex justify-content-center">
-		<div class="card text-center border-dark" style="width: 25rem; margin: auto;">
-			<div class="card-header">
-				<b>Task Infoamtion</b>
+	<div class="container">
+		<div class="row mt-5 pt-5">
+			<div class="col-6 d-flex flex-column justify-content-center border-right border-dark">
+				<h1 class="display-1 d-flex justify-content-center slideShine" id="title1">IMPRes</h1>
+				<h1 class="display-4 d-flex justify-content-center slideShine pb-2" id="title2">Processing...</h1>
+				<div class="d-flex justify-content-center mt-3">
+					<button class="btn btn-dark" href="/impres/<%=datadir%>" id="btnResult" type="button" disabled>
+						<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+						Loading...
+					</button>
+				</div>
 			</div>
-			<ul class="list-group list-group-flush">
-				<li class="list-group-item">
-					<b>Organism:</b>
-					<%= info.organism %>
-				</li>
-				<li class="list-group-item">
-					<b>Algorithm:</b>
-					<% if (info.radioalgo === 'option1'){ %>
-						IMPRes 1.0
-						<% } else { %>
-							IMPRes-Pro
-							<% } %>
-				</li>
-				<li class="list-group-item">
-					<b>Target genes:</b>
-					<% if (info.radiotarget === 'option1'){ %>
-						Uploaded target
-						<% } else{ %>
-							Derive target genes automatically
-							<% } %>
 
-				</li>
-				<% if (info.radiotarget === 'option2'){ %>
-					<li class="list-group-item">
-						<b>Targetnum:</b>
-						<%= info.targetnum %>
-					</li>
-					<% } %>
+			<div class="col-6">
+				<div class="card border-dark" style="width: 25rem; margin: auto;">
+					<div class="card-header  text-center">
+						<b>Task Infoamtion</b>
+					</div>
+					<ul class="list-group list-group-flush">
 						<li class="list-group-item">
-							<b>Expression data file:</b>
-							<%= info.dataradio %>
+							<b>Organism:</b>
+							<%= info.organism %>
 						</li>
-						<% if (info.timepoint != undefined){ %>
+						<li class="list-group-item">
+							<b>Algorithm:</b>
+							<% if (info.radioalgo === 'option1'){ %>
+								IMPRes 1.0
+								<% } else { %>
+									IMPRes-Pro
+									<% } %>
+						</li>
+						<li class="list-group-item">
+							<b>Target genes:</b>
+							<% if (info.radiotarget === 'option1'){ %>
+								Uploaded target
+								<% } else{ %>
+									Derive target genes automatically
+									<% } %>
+
+						</li>
+						<% if (info.radiotarget === 'option2'){ %>
 							<li class="list-group-item">
-								<b>Timepoint:</b>
-								<%= info.timepoint %>
+								<b>Targetnum:</b>
+								<%= info.targetnum %>
 							</li>
-							<li class="list-group-item">
-								<b>Replicate:</b>
-								<%= info.replicate %>
-							</li>
-							<% } else{ %>
+							<% } %>
 								<li class="list-group-item">
-									<b>Controlsam:</b>
-									<%= info.controlsam %>
+									<b>Expression data file:</b>
+									<%= info.dataradio %>
 								</li>
-								<li class="list-group-item">
-									<b>Casesam:</b>
-									<%= info.casesam %>
-								</li>
-								<% } %>
-			</ul>
+								<% if (info.timepoint != undefined){ %>
+									<li class="list-group-item">
+										<b>Timepoint:</b>
+										<%= info.timepoint %>
+									</li>
+									<li class="list-group-item">
+										<b>Replicate:</b>
+										<%= info.replicate %>
+									</li>
+									<% } else{ %>
+										<li class="list-group-item">
+											<b>Controlsam:</b>
+											<%= info.controlsam %>
+										</li>
+										<li class="list-group-item">
+											<b>Casesam:</b>
+											<%= info.casesam %>
+										</li>
+										<% } %>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
-
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
@@ -128,12 +166,12 @@
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<script>
-		var Url = '/impres/exec/';
+		var Url = '/impres/status/';
 		var data = {
 			para: "<%= para%>",
 			datadir: "<%= datadir%>"
 		};
-		$.post(Url, data, function(data, status){			
+		$.post(Url, data, function(data, status){
 		});
 	</script>
 </body>

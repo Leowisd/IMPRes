@@ -1,3 +1,4 @@
 # Add waiting page, 
-    2. redirect to the new route.
-    3. Used ajax to request exec rscipt
+	0. Redesign the page.
+    1. Used ajax to check if got results
+	2. Change page elements

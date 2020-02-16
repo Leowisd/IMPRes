@@ -14,7 +14,7 @@ app.use(fileUpload());
 app.use(bodyParser.urlencoded({ extended: true }));
 //app.set("view engine", "ejs");
 app.use(express.static('imp_public'));
-
+// app.disable('view cache');
 
 //var datadir="somefolder/result_test50.json"
 var datadir = "";
@@ -28,7 +28,6 @@ app.get("/impres/index", function (req, res) {
     else {
         sourceflag = 1;
         res.render("index.ejs", { folder: datadir });
-
     }
 });
 
@@ -40,8 +39,7 @@ app.get("/impres/:jobname1/:jobname2/:jobname3", function (req, res) {
     //    if(sourceflag==2)
     {
         console.log("found file");
-
-        return res.render("index.ejs", { folder: des });
+		return res.render("index.ejs", { folder: des });
     }
     else {
 
@@ -273,8 +271,24 @@ app.post("/impres/running", function (req, res) {
 	
 		res.render('waitingPage.ejs', {info: req.body, para: para, datadir: datadir});
 
+		// exec('Rscript rserve.R', (err, stdout, stderr) => {
+		// if (err) {
+		// console.log(err.message.toString());
+		// // res.send("error");
+		// return;
+		// }
+		// var workprocess = exec('java -jar ./version_11_7_2019.jar ' + para, (err, stdout, stderr) => {
+		// if (err) {
+		// console.log(err.message.toString());
+		// // res.send("error");
+		// return;
+		// }
+		// console.log(stdout);
+		// sourceflag = 2;
+		//     	// res.redirect('/impres/' + datadir);
+		// 	});
+		// });
 		
-
 	
         // res.send("running, wait to redirect!");
 
@@ -288,30 +302,8 @@ app.post("/impres/running", function (req, res) {
 
 });
 
-app.post("/impres/exec/", function(req, res){
-	// console.log(req.body);
-	var para = req.body.para;
-	var datadir = req.body.datadir;
-	exec('Rscript ./rserve.R', (err, stdout, stderr) => {
-        if (err) {
-            console.log(err.message.toString());
-            // res.send("error");
-            return;
-        }
-
-        exec('java -jar ./version_11_7_2019.jar ' + para, (err, stdout, stderr) => {
-            if (err) {
-                console.log(err.message.toString());
-                // res.send("error");
-                return;
-            }
-            console.log(stdout);
-            sourceflag = 2;
-        });
-    });
-    return res.redirect('/impres/' + datadir);
+app.post("/impres/status/", function(req, res){
 });
-
 
 var server = app.listen(3000, process.env.IP, function () {
     console.log("The IMPRes Server Has Started On:");
