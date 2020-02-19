@@ -6,6 +6,7 @@ const fs = require('fs');
 const fileUpload = require('express-fileupload');
 const exec = require('child_process').exec;
 const spawn = require('child_process').spawn;
+var UUID = require("uuid");
 
 
 var sourceflag = 1;
@@ -102,15 +103,16 @@ app.get("/impres/dltime", function (req, res) {
 app.post("/impres/tool", function (req, res) {
     var date = new Date();
     var organism = req.body.organism;
-    var time = date.getTime();
-    var folder = "./imp_public/imp_result/" + organism + "/" + time;
+    // var time = date.getTime();
+	var id = UUID.v1();
+    var folder = "./imp_public/imp_result/" + organism + "/" + id;
     exec('mkdir ' + folder, (err, stdout, stderr) => {
         if (err) {
             return;
         }
 
         var comfolder = "./imp_public/imp_result/" + organism + "/";
-        var temfolder = time + "/";
+        var temfolder = id + "/";
         console.log(req.body);
 
         //     req.file('file_input').upload(options, function (err, uploadedFiles) {
@@ -169,8 +171,8 @@ app.post("/impres/tool", function (req, res) {
 app.post("/impres/running", function (req, res) {
     var date = new Date();
     var organism = req.body.organism;
-    var time = date.getTime();
-    var folder = "./imp_public/imp_result/" + organism + "/" + time;
+    var id =  UUID.v1();
+    var folder = "./imp_public/imp_result/" + organism + "/" + id;
     
     exec('mkdir ' + folder, (err, stdout, stderr) => {
         if (err) {
@@ -178,7 +180,8 @@ app.post("/impres/running", function (req, res) {
         }
 
         var comfolder = "./imp_public/imp_result/" + organism + "/";
-        var temfolder = time + "/";
+        // var temfolder = time + "/";
+		var temfolder = id + "/";
         var target_radio = req.body.radiotarget;
         var datatype = req.body.dataradio;
         var num1 = 1;
@@ -269,27 +272,24 @@ app.post("/impres/running", function (req, res) {
 
         datadir = "/imp_result/" + organism + "/" + temfolder;
 	
-		res.render('waitingPage.ejs', {info: req.body, para: para, datadir: datadir});
-
-		// exec('Rscript rserve.R', (err, stdout, stderr) => {
-		// if (err) {
-		// console.log(err.message.toString());
-		// // res.send("error");
-		// return;
-		// }
-		// var workprocess = exec('java -jar ./version_11_7_2019.jar ' + para, (err, stdout, stderr) => {
-		// if (err) {
-		// console.log(err.message.toString());
-		// // res.send("error");
-		// return;
-		// }
-		// console.log(stdout);
-		// sourceflag = 2;
-		//     	// res.redirect('/impres/' + datadir);
-		// 	});
-		// });
+		exec('Rscript rserve.R', (err, stdout, stderr) => {
+			if (err) {
+			console.log(err.message.toString());
+			// res.send("error");
+			return;
+			}
+			var workprocess = exec('java -jar ./version_11_7_2019.jar ' + para, (err, stdout, stderr) => {
+				if (err) {
+				console.log(err.message.toString());
+				// res.send("error");
+				return;
+				}
+				console.log(stdout);
+				sourceflag = 2;
+		    	// res.redirect('/impres/' + datadir);
+				});
+		});
 		
-	
         // res.send("running, wait to redirect!");
 
         // get data from form and add to campgrounds array
@@ -299,10 +299,15 @@ app.post("/impres/running", function (req, res) {
         // campgrounds.push(newCampground);
         //redirect back to campgrounds page
     });
-
+	res.render('waitingPage.ejs', {info: req.body, datadir: "/imp_result/" + organism + "/" + id + "/", id: id});
 });
 
+// Check if the job is completed
 app.post("/impres/status/", function(req, res){
+	if (fs.existsSync("imp_public" + req.body.datadir + "result.json")){
+		res.send("1");
+	}
+	else res.send("0");
 });
 
 var server = app.listen(3000, process.env.IP, function () {
