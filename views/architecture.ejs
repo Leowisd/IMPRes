@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!--<link rel="icon" href="../../../../favicon.ico">-->
+
+	<title>IMPRes</title>
+
+	<!-- Bootstrap core CSS -->
+	<!--<link href="../../../../dist/css/bootstrap.min.css" rel="stylesheet">-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+	<!-- Custom styles for this template -->
+	<!-- <link href="/imp_css/jumbotron.css" rel="stylesheet"> -->
+	<link href="/imp_css/architecture.css" rel="stylesheet">
+</head>
+
+<body>
+
+	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+
+		<a class="navbar-brand" href="/impres">HOME</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="/impres/info">Info</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/impres/job">New Job</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/impres/tutorial">Tutorial</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/impres/tool">Tools</a>
+				</li>
+			</ul>
+
+			<form class="form-inline my-2 my-lg-0" action="/impres/search" method="POST">
+				<input class="form-control mr-sm-2" name="searchID" type="search" placeholder="Task ID" aria-label="Search" required>
+				<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+			</form>
+
+		</div>
+	</nav>
+
+	<div id="cy"></div>
+
+	<div class="card" id="filterPanel">
+		<div class="card-header text-center">
+			<h5>Filter</h5>
+		</div>
+		<div class="card-body">
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">
+					<div class="input-group input-group-sm">
+						<input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+						<div class="input-group-append">
+							<button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+						</div>
+					</div>
+				</li>
+				<li class="list-group-item">
+					Section 1
+				</li>
+				<li class="list-group-item">
+					Section 2
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="card" id="infoCard">
+		<button type="button" class="close" aria-label="Close" id="infoCardCloseBtn">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<div class="card-body">
+			<h5 class="card-title" id="infoName"></h5>
+			<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			<a href="#" class="card-link">Card link</a>
+			<a href="#" class="card-link">Another link</a>
+		</div>
+	</div>
+
+	</div>
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+	<!-- cy libs -->
+	<script src="https://unpkg.com/webcola@3.3.8/WebCola/cola.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.14.0/cytoscape.min.js"></script>
+	<script src="https://unpkg.com/cytoscape-cola@2.2.3/cytoscape-cola.js"></script>
+	<script src="https://unpkg.com/cytoscape-popper@1.0.2/cytoscape-popper.js"></script>
+
+	<!-- js src-->
+	<!-- <script src="imp_result/imp_js/archtecture.js"></script> -->
+	<script>
+		var cy = cytoscape({
+			container: document.getElementById('cy'), // container to render in
+			elements: [ // list of graph elements to start with
+				{ // node a
+					data: {
+						id: 'a',
+						technos: 'activation'
+					}
+				},
+				{ // node b
+					data: {
+						id: 'b',
+					}
+				},
+				{ // node b
+					data: {
+						id: 'c',
+					}
+				},
+				{ // node b
+					data: {
+						id: 'd',
+					}
+				},
+				{ // edge ab
+					data: {
+						id: 'ab',
+						source: 'a',
+						target: 'b'
+					}
+				},
+				{ // edge ab
+					data: {
+						id: 'bd',
+						source: 'b',
+						target: 'd'
+					}
+				},
+				{ // edge ab
+					data: {
+						id: 'ac',
+						source: 'a',
+						target: 'c'
+					}
+				}
+			],
+			style: [ // the stylesheet for the graph
+				{
+					selector: 'node',
+					style: {
+						'background-color': '#666',
+						'label': 'data(id)'
+					}
+				},
+				{
+					selector: 'edge',
+					style: {
+						'width': 3,
+						'line-color': '#ccc',
+						'target-arrow-color': '#ccc',
+						'target-arrow-shape': 'triangle'
+					}
+				}
+			],
+			layout: {
+				name: 'cola',
+				nodeSpacing: 5,
+				edgeLengthVal: 45,
+				animate: true,
+				randomize: true,
+				maxSimulationTime: 1500
+			}
+		});
+		cy.on('click', 'node', function(evt) {
+			var node = evt.target;
+			$("#infoName").text(node.id());
+			$("#infoCard").show();
+			// $("#infoCard").toggle( //动态显示和隐藏
+			// 	function() {
+			// 		$(this).attr("style", "display:none;"); //隐藏div
+			// 	},
+			// );
+			console.log('clicked ' + node.id())
+		});
+		$("#infoCardCloseBtn").click(function() {
+			$("#infoCard").hide();
+		});
+	</script>
+</body>
+
+</html>

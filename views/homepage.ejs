@@ -2,177 +2,175 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <!--<link rel="icon" href="../../../../favicon.ico">-->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!--<link rel="icon" href="../../../../favicon.ico">-->
 
-  <title>IMPRes</title>
+	<title>IMPRes</title>
 
-  <!-- Bootstrap core CSS -->
-  <!--<link href="../../../../dist/css/bootstrap.min.css" rel="stylesheet">-->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
-    integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-  <!-- Custom styles for this template -->
-  <link href="/imp_css/jumbotron.css" rel="stylesheet">
-  <!--<link href="mycss.css" rel="stylesheet">-->
+	<!-- Bootstrap core CSS -->
+	<!--<link href="../../../../dist/css/bootstrap.min.css" rel="stylesheet">-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+	<!-- Custom styles for this template -->
+	<link href="/imp_css/jumbotron.css" rel="stylesheet">
+	<!--<link href="mycss.css" rel="stylesheet">-->
 </head>
 
 <style type="text/css">
-  .card {
-    height: 13rem;
-  }
+	.card {
+		height: 13rem;
+	}
 
-  .card-body {
-    overflow-y: auto;
-  }
+	.card-body {
+		overflow-y: auto;
+	}
 </style>
 
 <body>
 
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 
-    <a class="navbar-brand" href="/impres">HOME</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+		<a class="navbar-brand" href="/impres">HOME</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 
-    <div class="collapse navbar-collapse flex-row-reverse" id="navbarsExampleDefault">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/impres/info">Info</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/impres/job">New Job</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/impres/tutorial">Tutorial</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/impres/tool">Tools</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+		<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="/impres/info">Info</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/impres/job">New Job</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/impres/tutorial">Tutorial</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/impres/tool">Tools</a>
+				</li>
+			</ul>
+			
+			<form class="form-inline my-2 my-lg-0" action="/impres/search" method="POST">
+				<input class="form-control mr-sm-2" name="searchID" type="search" placeholder="Task ID" aria-label="Search" required>
+				<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+			</form>
+			
+		</div>
+	</nav>
 
-  <main role="main">
+	<main role="main">
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container">
-        <div class="row">
-          <div class="col-6">
-            <h1 class="display-1">IMPRes</h1>
-            <p>Integrative MultiOmics Pathway Resolution</p>
-          </div>
+		<!-- Main jumbotron for a primary marketing message or call to action -->
+		<div class="jumbotron">
+			<div class="container">
+				<div class="row">
+					<div class="col-6">
+						<h1 class="display-1">IMPRes</h1>
+						<p>Integrative MultiOmics Pathway Resolution</p>
+					</div>
 
-          <div class="col-6">
-            <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
-              <ol class="carousel-indicators">
-                <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselIndicators" data-slide-to="2"></li>
-              </ol>
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <div class="card text-white bg-dark">
-                    <div class="card-header">
-                      New Feature
-                    </div>
-                    <div class="card-body">
-                      This is some text within a card body 1.
-                    </div>
-                    <div class="card-footer">
-                      <small class="text-muted">Last updated 3 mins ago</small>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <div class="card text-white bg-dark">
-                    <div class="card-header">
-                      New Feature
-                    </div>
-                    <div class="card-body">
-                      This is some text within a card body 2.
-                    </div>
-                    <div class="card-footer">
-                      <small class="text-muted">Last updated 3 mins ago</small>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <div class="card text-white bg-dark">
-                    <div class="card-header">
-                      New Feature
-                    </div>
-                    <div class="card-body">
-                      This is some text within a card body 3.
-                      This is some text within a card body 3.
-                      This is some text within a card body 3.
-                      This is some text within a card body 3.
-                      This is some text within a card body 3.
-                      This is some text within a card body 3.
-                      This is some text within a card body 3.
-                      This is some text within a card body 3.
-                      This is some text within a card body 3.
-                    </div>
-                    <div class="card-footer">
-                      <small class="text-muted">Last updated 3 mins ago</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+					<div class="col-6">
+						<div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+							<ol class="carousel-indicators">
+								<li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+								<li data-target="#carouselIndicators" data-slide-to="1"></li>
+								<li data-target="#carouselIndicators" data-slide-to="2"></li>
+							</ol>
+							<div class="carousel-inner">
+								<div class="carousel-item active">
+									<div class="card text-white bg-dark">
+										<div class="card-header">
+											New Feature
+										</div>
+										<div class="card-body">
+											This is some text within a card body 1.
+										</div>
+										<div class="card-footer">
+											<small class="text-muted">Last updated 3 mins ago</small>
+										</div>
+									</div>
+								</div>
+								<div class="carousel-item">
+									<div class="card text-white bg-dark">
+										<div class="card-header">
+											New Feature
+										</div>
+										<div class="card-body">
+											This is some text within a card body 2.
+										</div>
+										<div class="card-footer">
+											<small class="text-muted">Last updated 3 mins ago</small>
+										</div>
+									</div>
+								</div>
+								<div class="carousel-item">
+									<div class="card text-white bg-dark">
+										<div class="card-header">
+											New Feature
+										</div>
+										<div class="card-body">
+											This is some text within a card body 3. This is some text within a card body 3. This is some text within a card body 3. This is some text within a card body 3. This is some text within a card body 3. This is some text within a card body 3. This is some
+											text within a card body 3. This is some text within a card body 3. This is some text within a card body 3.
+										</div>
+										<div class="card-footer">
+											<small class="text-muted">Last updated 3 mins ago</small>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-    <div class="container">
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-md-4">
-          <h2>Introduction</h2>
-          <p>Learn what is IMPRes and what you can do with IMPRes. </p>
-          <p><a class="btn btn-secondary" href="/impres/info" role="button">Learn more &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-          <h2>New Job</h2>
-          <p>Submit a new a job of your own dataset or try our web server by using our sample dataset, you can use our
-            <a href="/tool">tools</a> to convert your data to our acceptable format. </p>
-          <p><a class="btn btn-secondary" href="/impres/job" role="button">Start a new job &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-          <h2>Tutorial</h2>
-          <p>New to IMPRes? Our detailed tutorial will guide you through the process of using IMPRes.</p>
-          <p><a class="btn btn-secondary" href="/impres/tutorial" role="button">Learn more &raquo;</a></p>
-        </div>
-      </div>
+		<div class="container">
+			<!-- Example row of columns -->
+			<div class="row">
+				<div class="col-md-4">
+					<h2>Introduction</h2>
+					<p>Learn what is IMPRes and what you can do with IMPRes. </p>
+					<p>
+						<a class="btn btn-secondary" href="/impres/info" role="button">Learn more &raquo;</a>
+					</p>
+				</div>
+				<div class="col-md-4">
+					<h2>New Job</h2>
+					<p>Submit a new a job of your own dataset or try our web server by using our sample dataset, you can use our
+						<a href="/tool">tools</a> to convert your data to our acceptable format. </p>
+					<p>
+						<a class="btn btn-secondary" href="/impres/job" role="button">Start a new job &raquo;</a>
+					</p>
+				</div>
+				<div class="col-md-4">
+					<h2>Tutorial</h2>
+					<p>New to IMPRes? Our detailed tutorial will guide you through the process of using IMPRes.</p>
+					<p>
+						<a class="btn btn-secondary" href="/impres/tutorial" role="button">Learn more &raquo;</a>
+					</p>
+				</div>
+			</div>
 
-      <hr>
+			<hr>
 
-    </div> <!-- /container -->
+		</div>
+		<!-- /container -->
 
-  </main>
+	</main>
 
-  <footer class="container">
-    <p>&copy; Digital Biologial Laboratory 2017-2020</p>
-  </footer>
+	<footer class="container">
+		<p>&copy; Digital Biologial Laboratory 2017-2020</p>
+	</footer>
 
-  <!-- Bootstrap core JavaScript
+	<!-- Bootstrap core JavaScript
     ================================================== -->
-  <!-- Placed at the end of the document so the pages load faster -->
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-    crossorigin="anonymous"></script>
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 
 </html>

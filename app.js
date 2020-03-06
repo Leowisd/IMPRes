@@ -46,9 +46,9 @@ app.get("/impres/:jobname1/:jobname2/:jobname3", function (req, res) {
 
         console.log("didnt found after 10s");
         //    return res.redirect('https://impres-luke87.c9users.io/impres'+des);
-        setTimeout(function () {
-            return res.redirect('http://digbio.missouri.edu/impres' + des);
-        }, 30000);
+        // setTimeout(function () {
+        //     return res.redirect('http://digbio.missouri.edu/impres' + des);
+        // }, 30000);
         //   return res.render(req.originalUrl);
     }
 
@@ -309,6 +309,31 @@ app.post("/impres/status/", function(req, res){
 	}
 	else res.send("0");
 });
+
+app.post("/impres/search", function(req, res){
+	var searchID = req.body.searchID;
+	console.log(searchID);
+	if (fs.existsSync("imp_public/imp_result/yeast/" + searchID)){
+		res.redirect("/impres/imp_result/yeast/" + searchID);		
+	}
+	else if (fs.existsSync("imp_public/imp_result/human/" + searchID)){
+		res.redirect("/impres/imp_result/human/" + searchID);		
+	}
+	else if (fs.existsSync("imp_public/imp_result/maize/" + searchID)){
+		res.redirect("/impres/imp_result/maize/" + searchID);		
+	}
+	else res.redirect('/impres/404');
+});
+
+app.get("/impres/test", function(req, res){
+	res.render('architecture.ejs');
+});
+
+app.get("*", function(req, res){
+	res.render('404.ejs');
+});
+
+
 
 var server = app.listen(3000, process.env.IP, function () {
     console.log("The IMPRes Server Has Started On:");
