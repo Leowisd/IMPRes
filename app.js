@@ -326,6 +326,14 @@ app.post("/impres/search", function(req, res){
 });
 
 app.get("/impres/test", function(req, res){
+	var obj = JSON.parse(fs.readFileSync("imp_public/imp_result/yeast/1517245899541/result.json"));
+	var json = obj;
+	// console.log(json);
+	
+	var nodes = [];
+	var edges = [];
+	
+	
 	res.render('architecture.ejs');
 });
 

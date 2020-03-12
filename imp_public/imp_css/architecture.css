@@ -32,5 +32,17 @@ body {
 	position: absolute;
 	left: 1%;
 	top: 10%;
-	width: 22rem;
+	width: 23rem;
+}
+
+.btn-group-xs > .btn, .btn-xs {
+  padding: .25rem .4rem;
+  font-size: .875rem;
+  line-height: .5;
+  border-radius: .2rem;
+}
+
+.close {
+    color: #fff; 
+    opacity: 1;
 }

@@ -53,9 +53,9 @@
 
 	<div id="cy"></div>
 
-	<div class="card" id="filterPanel">
+	<div class="card border-dark" id="filterPanel">
 		<div class="card-header text-center">
-			<h5>Filter</h5>
+			<b>Filter</b>
 		</div>
 		<div class="card-body">
 			<ul class="list-group list-group-flush">
@@ -68,16 +68,22 @@
 					</div>
 				</li>
 				<li class="list-group-item">
-					Section 1
+					<b>Interaction type</b>
+					<br>
+					<button type="button" class="btn btn-dark btn-xs mb-1">Small button</button>
+					<button type="button" class="btn btn-dark btn-xs mb-1">Small button</button>
+					<button type="button" class="btn btn-dark btn-xs mb-1">Small button</button>
 				</li>
 				<li class="list-group-item">
-					Section 2
+					<b>Pathway</b>
+					<br>
+					<button type="button" class="btn btn-dark btn-xs">Small button</button>
 				</li>
 			</ul>
 		</div>
 	</div>
 
-	<div class="card" id="infoCard">
+	<div class="card text-white bg-dark" id="infoCard">
 		<button type="button" class="close" aria-label="Close" id="infoCardCloseBtn">
 			<span aria-hidden="true">&times;</span>
 		</button>
@@ -156,7 +162,7 @@
 				{
 					selector: 'node',
 					style: {
-						'background-color': '#666',
+						'background-color': '#000',
 						'label': 'data(id)'
 					}
 				},
@@ -193,6 +199,21 @@
 		$("#infoCardCloseBtn").click(function() {
 			$("#infoCard").hide();
 		});
+		
+		// var obj = JSON.parse(xmlhttp.responseText);
+		// var json = obj.data[0][0];
+		// var nodeMap = {};
+		// json.nodes.forEach(function(x) {
+		// 	nodeMap[x.id] = x;
+		// 	nodeMap[x.id].children = [];
+		// });
+		// var links = json.links.map(function(x) {
+		// 	nodeMap[x.source].children.push(nodeMap[x.target]);
+		// 	return {
+		// 		source: nodeMap[x.source],
+		// 		target: nodeMap[x.target]
+		// 	};
+		// });
 	</script>
 </body>
 
